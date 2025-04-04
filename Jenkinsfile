@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Clone Repository'){
             steps {
-                git branch: 'main', url: 'https://github.com/pankaj-Makhijani/Nodejs-hello-world.git'
+                git branch: 'main', url: 'https://github.com/mslearn0055/Nodejs-hello-world.git'
             }
         }
         stage('Install Dependencies'){
