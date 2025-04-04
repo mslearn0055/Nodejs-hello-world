@@ -1,7 +1,8 @@
 @Library('jenkins-shared-libraries') _
 pipeline {
     agent any
-     tools nodejs "nodejs"
+     tools { nodejs "nodejs" }  // ✅ Correct
+
     stages {
         stage('Clone Repository'){
             steps {
