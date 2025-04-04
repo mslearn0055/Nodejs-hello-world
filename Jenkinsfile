@@ -1,25 +1,31 @@
 @Library('jenkins-shared-libraries') _
 pipeline {
     agent any
-     tools { nodejs "nodejs" }  // ✅ Correct
+    tools { nodejs "nodejs" }  
+
+    environment {
+        PATH = "/var/lib/jenkins/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/nodejs/bin:$PATH"
+    }
 
     stages {
-        stage('Clone Repository'){
+        stage('Clone Repository') {
             steps {
                 git branch: 'main', url: 'https://github.com/mslearn0055/Nodejs-hello-world.git'
             }
         }
-        stage('Install Dependencies'){
+        stage('Install Dependencies') {
             steps {
-                npmInstall()
+                script {
+                    npmInstall()  // Call the shared library function
+                }
             }
         }
-        stage('Perform API testing'){
+        stage('Perform API testing') {
             steps {
                 sh 'npm test'
             }
         }
-        stage('Start Application'){
+        stage('Start Application') {
             input {
                 message "Should we continue?"
                 ok "Yes, we should."
