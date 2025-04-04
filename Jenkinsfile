@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Install Dependencies'){
             steps {
-                npmInstall
+                npmInstall()
             }
         }
         stage('Perform API testing'){
